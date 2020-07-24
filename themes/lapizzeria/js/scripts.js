@@ -24,4 +24,7 @@ jQuery(document).ready( $ => {
 
     });
 
+    /* Añadimos target blank a los enlaces de redes sociales */
+    $(".sociales a").attr('target', '_blank');
+
 });
