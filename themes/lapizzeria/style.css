@@ -119,6 +119,38 @@ img {
 
 }
 
+/** BOTONES **/
+.boton {
+    padding: 1rem 3rem;
+    display: block;
+    flex: 1;
+    text-align: center;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+    font-weight: 700;
+    font-family: var(--fuenteHeadings);
+    border-radius: .5rem;
+
+
+}
+@media (min-width: 768px){
+    .boton {
+        display: inline-block;
+        flex: 0 0 auto;
+    }
+    
+}
+
+.boton-primario {
+    background-color: var(--naranja);
+    color: var(--blanco);
+}
+
+.boton-secundario {
+    background-color: var(--rojo);
+    color: var(--blanco);
+}
+
 /** HEADER **/
 
 .site-header{
@@ -379,4 +411,102 @@ img {
     color: var(--blanco);
     z-index: 1;
     position: relative;/*para que funcione el z-index*/
+}
+
+
+/** BLOG **/
+@media (min-width: 768px){
+    .con-sidebar {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 4rem;
+    }
+}
+
+.entrada-blog {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--grisClaro);
+}
+
+.entrada-blog:last-of-type {
+    border: none;
+}
+
+.informacion-entrada {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.informacion-entrada .fecha {
+    background-color: var(--naranja);
+    height: 7rem;
+    text-align: center;
+    line-height: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.informacion-entrada .fecha time {
+    font-size: 3rem;
+    font-family: var(--fuenteHeadings);
+    font-weight: 700;
+}
+
+.informacion-entrada .fecha time span {
+    font-size: 1.6rem;
+    display: block;
+    text-transform: uppercase;
+}
+
+.informacion-entrada h2 {
+    margin: 0;
+}
+
+.entrada-blog p.autor {
+    text-transform: uppercase;
+    font-family: var(--fuenteHeadings);
+    margin-bottom: 2rem;
+}
+
+.autor span {
+    color: var(--naranja);
+    font-weight: 700;
+    font-size: 2rem;
+}
+/*.autor span::after {
+    background-image: url('img/usuario.svg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-size: 20px 20px;
+    display: inline-block;
+    width: 20px; 
+    height: 20px;
+    vertical-align: -6%;
+    content:"";
+}*/ 
+
+.entrada-blog p {
+    margin: .5rem 0;
+    line-height: 1.5;
+}
+
+.entrada-blog .boton {
+    margin-top: 2rem;
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+}
+
+.paginacion a:first-of-type {
+    margin-right: 2rem;
 }

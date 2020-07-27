@@ -6,6 +6,11 @@ function lapizzeria_setup() {
         //IMAGENES DESTACADAS
         add_theme_support( 'post-thumbnails' );
 
+        //Tam,años de Imagenes
+        add_image_size('nosostros', 437, 291, true);
+        add_image_size('especialidades', 768, 515, true);
+        add_image_size('especialidades_portrait', 435, 526, true);
+
 }
 add_action( 'after_setup_theme', 'lapizzeria_setup' );
 
@@ -51,3 +56,11 @@ function lapizzeria_menus() {
         
 }
 add_action( 'init', 'lapizzeria_menus' );
+
+
+/** AGREGAR BOTONES AL PAGINADOR **/
+function lapizzeria_botones_paginacion() {
+        return 'class="boton boton-secundario"';
+}
+add_filter('next_posts_link_attributes', 'lapizzeria_botones_paginacion');
+add_filter('previous_posts_link_attributes', 'lapizzeria_botones_paginacion');
