@@ -1,3 +1,5 @@
 <aside class="sidebar">
-    <h2>Sidebar</h2>
+    <?php if(is_active_sidebar('blog_sidebar')): ?>
+    <?php dynamic_sidebar( 'blog_sidebar' ); ?>
+    <?php endif; ?>
 </aside>

@@ -1,17 +1,6 @@
 <?php get_header(); ?>
 
-<?php 
-
-    $pagina_blog = get_option( 'page_for_posts' );
-    $imagen_id = get_post_thumbnail_id($pagina_blog);
-    $imagen_src = wp_get_attachment_image_src($imagen_id, 'full')[0];
-?>
-
-<div class="hero" style="background-image: url(<?php echo $imagen_src ?>);">
-    <div class="contenido-hero">
-        <h1><?php echo get_the_title($pagina_blog); ?></h1>
-    </div>
-</div>
+<?php get_template_part('template-parts/fondo', 'imagen'); ?>
 
 <div class="seccion contenedor con-sidebar">
     <main class="contenido-principal">
@@ -20,27 +9,7 @@
             <a href="<?php the_permalink(); ?>">
                 <?php the_post_thumbnail('especialidades'); ?>
             </a>
-            <header class="informacion-entrada">
-                <div class="fecha">
-                    <time>
-                        <?php echo the_time( 'd' ); ?>
-                        <span>
-                            <?php echo the_time( 'M' ); ?>
-                        </span>
-                    </time>
-                </div>
-
-                <div class="titulo-entrada">
-                    <h2><?php the_title(); ?></h2>
-                </div>
-            </header>
-
-            <p class="autor">
-                Escrito por:
-                <span>
-                    <?php the_author(); ?>
-                </span>
-            </p>
+            <?php get_template_part('template-parts/informacion', 'entrada'); ?>
 
             <div class="contenido-entrada">
                 <?php //wp_trim_words(get_the_content(), 30);
@@ -56,12 +25,8 @@
         </article>
         <?php endwhile; ?>
 
-        <!-- PAGINADOR -->
-        <?php //echo paginate_links(); ?>
-        <div class="paginacion">
-            <?php next_posts_link('Anteriores') ?>
-            <?php previous_posts_link('Siguientes') ?>
-        </div>
+        <!-- paginador -->
+        <?php get_template_part('template-parts/listado', 'paginador'); ?>
 
     </main>
 

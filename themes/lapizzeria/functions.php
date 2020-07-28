@@ -10,6 +10,7 @@ function lapizzeria_setup() {
         add_image_size('nosostros', 437, 291, true);
         add_image_size('especialidades', 768, 515, true);
         add_image_size('especialidades_portrait', 435, 526, true);
+        add_image_size('busqueda', 400, 400, true);
 
 }
 add_action( 'after_setup_theme', 'lapizzeria_setup' );
@@ -57,6 +58,20 @@ function lapizzeria_menus() {
 }
 add_action( 'init', 'lapizzeria_menus' );
 
+/** ZONA DE WIDGETS **/
+function lapizzeria_widgets() {
+
+        register_sidebar( array(
+                'name' => 'Blog Sidebar',
+                'id' => 'blog_sidebar',
+                'before_widget' => '<div class="widget">',
+                'after_widget' => '</div>',
+                'before_title' => '<h3>',
+                'after_title' => '</h3>'
+        ));
+
+}
+add_action('widgets_init', 'lapizzeria_widgets');
 
 /** AGREGAR BOTONES AL PAGINADOR **/
 function lapizzeria_botones_paginacion() {
