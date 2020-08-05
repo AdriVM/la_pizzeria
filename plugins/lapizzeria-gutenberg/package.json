@@ -1,0 +1,25 @@
+{
+  "name": "lapizzeria-gutenberg",
+  "version": "1.0.0",
+  "description": "Agrega Bloques personalizados de Gutenberg",
+  "main": "index.js",
+  "scripts": {
+    "build": "wp-scripts build",
+    "start": "wp-scripts start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AdriVM/la_pizzeria.git"
+  },
+  "author": "Adrián Vázquez Mirasierra",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AdriVM/la_pizzeria/issues"
+  },
+  "homepage": "https://github.com/AdriVM/la_pizzeria#readme",
+  "devDependencies": {
+    "@svgr/webpack": "^5.4.0",
+    "@wordpress/scripts": "^12.1.1",
+    "url-loader": "^4.1.0"
+  }
+}
