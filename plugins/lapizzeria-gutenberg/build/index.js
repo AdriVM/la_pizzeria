@@ -99,8 +99,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pizzeria-icon.svg */ "./src/pizzeria-icon.svg");
 
-var registerBlockType = wp.blocks.registerBlockType; //Logo para el bloque
+var registerBlockType = wp.blocks.registerBlockType; //Importamos componente richtext que nos sirve para escribir en gutenberg
 
+var _wp$editor = wp.editor,
+    RichText = _wp$editor.RichText,
+    InspectorControls = _wp$editor.InspectorControls,
+    ColorPalette = _wp$editor.ColorPalette;
+var PanelBody = wp.components.PanelBody; //Logo para el bloque
+
+
+/**
+ * LOS 7 PASOS PARA DESARROLLAR BLOQUES EN GUTENBERG
+ *  1.- Importar el/los componente/s que vayas a utilizar.
+ *  2.- Coloca el componente donde deseas utilizarlo.
+ *  3.- Crea una función que lea los contenidos.
+ *  4.- Registra un Atributo.
+ *  5.- Extraer el contenido desde props.
+ *  6.- Guarda el contenido con setAtributes.
+ *  7.- Lee los contenidos guardados en save().
+ */
 
 registerBlockType('lapizzeria/boxes', {
   title: 'Pizzeria Cajas',
@@ -108,11 +125,100 @@ registerBlockType('lapizzeria/boxes', {
     src: _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"]
   },
   category: 'lapizzeria',
-  edit: function edit() {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", null, "Se ve en el Editor");
+  attributes: {
+    headingBox: {
+      type: 'string',
+      source: 'html',
+      selector: '.box h2'
+    },
+    textoBox: {
+      type: 'string',
+      source: 'html',
+      selector: '.box p'
+    },
+    colorFondo: {
+      type: 'string'
+    }
   },
-  save: function save() {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", null, "Se ve en el Front-End");
+  edit: function edit(props) {
+    console.log(props); //EXTRAER EL CONTENIDO DESDE PROPS
+
+    var _props$attributes = props.attributes,
+        headingBox = _props$attributes.headingBox,
+        textoBox = _props$attributes.textoBox,
+        colorFondo = _props$attributes.colorFondo,
+        setAttributes = props.setAttributes; //Funcion para guardar en los atributos del props  el texto del h2
+
+    var onChangeHeadingBox = function onChangeHeadingBox(nuevoHeading) {
+      //GUARDAMOS EL CONTENIDO CON setAttributes.
+      setAttributes({
+        headingBox: nuevoHeading
+      });
+    }; //Funcion para guardar en los atributos del props  el texto del parrafo
+
+
+    var onChageTextoBox = function onChageTextoBox(nuevoTexto) {
+      setAttributes({
+        textoBox: nuevoTexto
+      });
+    }; //Funcion para cambiar el color del fondo
+
+
+    var onChangeColorFondo = function onChangeColorFondo(nuevoColorFondo) {
+      console.log(nuevoColorFondo);
+      setAttributes({
+        colorFondo: nuevoColorFondo
+      });
+    };
+
+    return (//Puede provocar un error porque no se pueden devolver 2 componentes 
+      //distintos a menos que algo los englobe, por eso ponemos el elemento vacio antes (bien podria ser un div en otros casos).
+      Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+        title: 'Color de Fondo',
+        initialOpen: true
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        classname: "components-base-control"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "components-base-control__field"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
+        className: "components-base-control__label"
+      }, "Color del Fondo"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ColorPalette, {
+        onChange: onChangeColorFondo,
+        value: colorFondo
+      }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "box",
+        style: {
+          backgroundColor: colorFondo
+        }
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+        placeholder: "Agrega el Encabezado.",
+        onChange: onChangeHeadingBox,
+        value: headingBox
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+        placeholder: "Agrega un texto.",
+        onChange: onChageTextoBox,
+        value: textoBox
+      }))))
+    );
+  },
+  save: function save(props) {
+    console.log(props); //EXTRAER EL CONTENIDO DESDE PROPS PARA LEER LOS ATRIBUTOS
+
+    var _props$attributes2 = props.attributes,
+        headingBox = _props$attributes2.headingBox,
+        textoBox = _props$attributes2.textoBox,
+        colorFondo = _props$attributes2.colorFondo; //GUARDAMOS LOS ATRIBUTOS
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "box",
+      style: {
+        backgroundColor: colorFondo
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      value: headingBox
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      value: textoBox
+    })));
   }
 });
 

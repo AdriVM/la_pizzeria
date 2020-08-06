@@ -3,10 +3,49 @@
 /** SETUP **/
 function lapizzeria_setup() {
 
+//########################################################################################################################
+        /** GUTENBERG */
+
+        //Soporte a los estilos por defecto de GUTENBERG en tu tema
+        add_theme_support('wp-block-styles');
+
+        // Paleta de Colores
+        add_theme_support('editor-color-palette', array(
+                array(
+                        'name' => 'Rojo',
+                        'slug' => 'rojo',
+                        'color' => '#a61206'
+                ),
+                array(
+                        'name' => 'Naranja',
+                        'slug' => 'naranja',
+                        'color' => '#f19f30'
+                ),
+                array(
+                        'name' => 'Verde',
+                        'slug' => 'verde',
+                        'color' => '#127427'
+                ),
+                array(
+                        'name' => 'Blanco',
+                        'slug' => 'blanco',
+                        'color' => '#ffffff'
+                ),
+                array(
+                        'name' => 'Negro',
+                        'slug' => 'negro',
+                        'color' => '#000000'
+                )
+        ));
+
+        //Desahabilitamos que el usuario pueda seleccionar otros colores fuera de la paleta
+        add_theme_support('disable-custom-colors');
+
+//########################################################################################################################
         //IMAGENES DESTACADAS
         add_theme_support( 'post-thumbnails' );
 
-        //Tam,años de Imagenes
+        //Tamaños de Imagenes
         add_image_size('nosostros', 437, 291, true);
         add_image_size('especialidades', 768, 515, true);
         add_image_size('especialidades_portrait', 435, 526, true);
