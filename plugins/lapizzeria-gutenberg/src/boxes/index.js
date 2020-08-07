@@ -1,6 +1,6 @@
 const { registerBlockType } = wp.blocks;
 //Importamos componente richtext que nos sirve para escribir en gutenberg
-const { RichText, InspectorControls, ColorPalette } = wp.editor;
+const { RichText, InspectorControls, ColorPalette, BlockControls, AlignmentToolbar  } = wp.editor;
 const { PanelBody } = wp.components;
 
 //Logo para el bloque
@@ -34,12 +34,19 @@ registerBlockType('lapizzeria/boxes', {
         },
         colorFondo: {
             type: 'string'
+        },
+        colorTexto: {
+            type: 'string'
+        },
+        alineacionContenido: {
+            type: 'string',
+            default: 'center'
         }
     },
     edit: (props) => {
         console.log(props);
         //EXTRAER EL CONTENIDO DESDE PROPS
-        const { attributes: { headingBox, textoBox, colorFondo }, setAttributes } = props;
+        const { attributes: { headingBox, textoBox, colorFondo, colorTexto, alineacionContenido }, setAttributes } = props;
 
         //Funcion para guardar en los atributos del props  el texto del h2
         const onChangeHeadingBox = (nuevoHeading) => {
@@ -58,6 +65,16 @@ registerBlockType('lapizzeria/boxes', {
             setAttributes({ colorFondo: nuevoColorFondo });
         }
 
+        //Función para cambiar el color del Texto
+        const onChangeColorTexto = (nuevoColorTexto) => {
+            setAttributes({ colorTexto: nuevoColorTexto });
+        }
+
+        //Función para alinear el contenido
+        const onChangeAlinearContenido = (nuevaAlineacion) => {
+            setAttributes({ alineacionContenido: nuevaAlineacion });
+        }
+
         return(
             //Puede provocar un error porque no se pueden devolver 2 componentes 
             //distintos a menos que algo los englobe, por eso ponemos el elemento vacio antes (bien podria ser un div en otros casos).
@@ -73,12 +90,27 @@ registerBlockType('lapizzeria/boxes', {
                             </div>
                         </div>
                     </PanelBody>
+                    <PanelBody title={'Color del Texto'} initialOpen={false}>
+                        <div classname="components-base-control">
+                            <div className="components-base-control__field">
+                                <label className="components-base-control__label">
+                                    Color del Texto
+                                </label>
+                                <ColorPalette onChange={ onChangeColorTexto } value={ colorTexto }/>
+                            </div>
+                        </div>
+                    </PanelBody>
                 </InspectorControls>
-                <div className="box" style={{ backgroundColor: colorFondo }}>
-                    <h2>
+
+                <BlockControls>
+                    <AlignmentToolbar onChange={ onChangeAlinearContenido }/>
+                </BlockControls>
+
+                <div className="box" style={{ backgroundColor: colorFondo, textAlign: alineacionContenido }}>
+                    <h2 style={{ color: colorTexto }}>
                         <RichText placeholder="Agrega el Encabezado." onChange={ onChangeHeadingBox } value={ headingBox }/>
                     </h2>
-                    <p>
+                    <p style={{ color: colorTexto }}>
                         <RichText placeholder="Agrega un texto." onChange={ onChageTextoBox } value={ textoBox } />
                     </p>
                 </div>
@@ -88,15 +120,15 @@ registerBlockType('lapizzeria/boxes', {
     save: (props) => {
         console.log(props);
         //EXTRAER EL CONTENIDO DESDE PROPS PARA LEER LOS ATRIBUTOS
-        const { attributes: { headingBox, textoBox, colorFondo } } = props;
+        const { attributes: { headingBox, textoBox, colorFondo, colorTexto, alineacionContenido } } = props;
 
         //GUARDAMOS LOS ATRIBUTOS
         return(
-            <div className="box" style={{ backgroundColor: colorFondo }}>
-                <h2>
+            <div className="box" style={{ backgroundColor: colorFondo, textAlign: alineacionContenido }}>
+                <h2 style={{ color: colorTexto }}>
                     <RichText.Content value={ headingBox }/>
                 </h2>
-                <p>
+                <p style={{ color: colorTexto }}>
                     <RichText.Content value={ textoBox } />
                 </p>
             </div>

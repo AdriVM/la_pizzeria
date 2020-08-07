@@ -51,7 +51,7 @@
         'lapizzeria-editor-styles',
         plugins_url('build/editor.css', __FILE__),
         array('wp-edit-blocks'),
-        filemtime(plugin_dir_path( __FILE__ ) . 'build/editor.css') 
+        filemtime( plugin_dir_path(__FILE__) . 'build/editor.css') 
     );
 
 
@@ -60,7 +60,7 @@
         'lapizzeria-frontend-styles',
         plugins_url('build/styles.css', __FILE__),
         array(),
-        filemtime(plugin_dir_path( __FILE__ ) . 'build/styles.css') 
+        filemtime( plugin_dir_path(__FILE__) . 'build/styles.css') 
     );
 
 

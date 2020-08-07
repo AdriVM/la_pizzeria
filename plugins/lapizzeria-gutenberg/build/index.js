@@ -104,7 +104,9 @@ var registerBlockType = wp.blocks.registerBlockType; //Importamos componente ric
 var _wp$editor = wp.editor,
     RichText = _wp$editor.RichText,
     InspectorControls = _wp$editor.InspectorControls,
-    ColorPalette = _wp$editor.ColorPalette;
+    ColorPalette = _wp$editor.ColorPalette,
+    BlockControls = _wp$editor.BlockControls,
+    AlignmentToolbar = _wp$editor.AlignmentToolbar;
 var PanelBody = wp.components.PanelBody; //Logo para el bloque
 
 
@@ -138,6 +140,13 @@ registerBlockType('lapizzeria/boxes', {
     },
     colorFondo: {
       type: 'string'
+    },
+    colorTexto: {
+      type: 'string'
+    },
+    alineacionContenido: {
+      type: 'string',
+      default: 'center'
     }
   },
   edit: function edit(props) {
@@ -147,6 +156,8 @@ registerBlockType('lapizzeria/boxes', {
         headingBox = _props$attributes.headingBox,
         textoBox = _props$attributes.textoBox,
         colorFondo = _props$attributes.colorFondo,
+        colorTexto = _props$attributes.colorTexto,
+        alineacionContenido = _props$attributes.alineacionContenido,
         setAttributes = props.setAttributes; //Funcion para guardar en los atributos del props  el texto del h2
 
     var onChangeHeadingBox = function onChangeHeadingBox(nuevoHeading) {
@@ -169,6 +180,20 @@ registerBlockType('lapizzeria/boxes', {
       setAttributes({
         colorFondo: nuevoColorFondo
       });
+    }; //Función para cambiar el color del Texto
+
+
+    var onChangeColorTexto = function onChangeColorTexto(nuevoColorTexto) {
+      setAttributes({
+        colorTexto: nuevoColorTexto
+      });
+    }; //Función para alinear el contenido
+
+
+    var onChangeAlinearContenido = function onChangeAlinearContenido(nuevaAlineacion) {
+      setAttributes({
+        alineacionContenido: nuevaAlineacion
+      });
     };
 
     return (//Puede provocar un error porque no se pueden devolver 2 componentes 
@@ -185,16 +210,39 @@ registerBlockType('lapizzeria/boxes', {
       }, "Color del Fondo"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ColorPalette, {
         onChange: onChangeColorFondo,
         value: colorFondo
-      }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+        title: 'Color del Texto',
+        initialOpen: false
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        classname: "components-base-control"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "components-base-control__field"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
+        className: "components-base-control__label"
+      }, "Color del Texto"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(ColorPalette, {
+        onChange: onChangeColorTexto,
+        value: colorTexto
+      }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(AlignmentToolbar, {
+        onChange: onChangeAlinearContenido
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
         className: "box",
         style: {
-          backgroundColor: colorFondo
+          backgroundColor: colorFondo,
+          textAlign: alineacionContenido
         }
-      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
+        style: {
+          color: colorTexto
+        }
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
         placeholder: "Agrega el Encabezado.",
         onChange: onChangeHeadingBox,
         value: headingBox
-      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+        style: {
+          color: colorTexto
+        }
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
         placeholder: "Agrega un texto.",
         onChange: onChageTextoBox,
         value: textoBox
@@ -207,16 +255,27 @@ registerBlockType('lapizzeria/boxes', {
     var _props$attributes2 = props.attributes,
         headingBox = _props$attributes2.headingBox,
         textoBox = _props$attributes2.textoBox,
-        colorFondo = _props$attributes2.colorFondo; //GUARDAMOS LOS ATRIBUTOS
+        colorFondo = _props$attributes2.colorFondo,
+        colorTexto = _props$attributes2.colorTexto,
+        alineacionContenido = _props$attributes2.alineacionContenido; //GUARDAMOS LOS ATRIBUTOS
 
     return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
       className: "box",
       style: {
-        backgroundColor: colorFondo
+        backgroundColor: colorFondo,
+        textAlign: alineacionContenido
       }
-    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
+      style: {
+        color: colorTexto
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
       value: headingBox
-    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", {
+      style: {
+        color: colorTexto
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
       value: textoBox
     })));
   }
