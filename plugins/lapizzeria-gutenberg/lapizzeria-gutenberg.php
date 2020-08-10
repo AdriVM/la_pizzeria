@@ -48,19 +48,19 @@
     
     // Estilos para el Editor (Únicamente)
     wp_register_style(
-        'lapizzeria-editor-styles',
-        plugins_url('build/editor.css', __FILE__),
-        array('wp-edit-blocks'),
-        filemtime( plugin_dir_path(__FILE__) . 'build/editor.css') 
+        'lapizzeria-editor-styles', // nombre
+        plugins_url( 'build/editor.css', __FILE__), // archivo css para el editor
+        array('wp-edit-blocks'), // dependencias
+        filemtime( plugin_dir_path(__FILE__) . 'build/editor.css')
     );
 
 
     //Estilos para los Bloques (Back-end y Front-end)
     wp_register_style(
-        'lapizzeria-frontend-styles',
-        plugins_url('build/styles.css', __FILE__),
-        array(),
-        filemtime( plugin_dir_path(__FILE__) . 'build/styles.css') 
+        'lapizzeria-frontend-styles', // nombre
+        plugins_url( 'build/styles.css', __FILE__), // archivo css para el editor
+        array(), // dependencias
+        filemtime( plugin_dir_path(__FILE__) . 'build/styles.css')
     );
 
 
