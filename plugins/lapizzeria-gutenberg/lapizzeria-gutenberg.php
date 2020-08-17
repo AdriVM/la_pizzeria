@@ -73,11 +73,26 @@
     //Recorrer Bloques y agregar Scripts y Styles
     foreach($blocks as $block) {
         register_block_type($block, array(
-            'editor_script' => 'lapizzeria-editor-script',
-            'editor_style' => 'lapizzeria-editor-styles',
-            'style' => 'lapizzeria-frontend-styles'
+            'editor_script' => 'lapizzeria-editor-script', //SCRIPT PRINCIPAL PARA EL EDITOR
+            'editor_style' => 'lapizzeria-editor-styles', //ESTILOS PARA EL EDITOR
+            'style' => 'lapizzeria-frontend-styles'// ESTILOS PARA EL FRONT END
         ));
     }
 
+    /** REGISTRAR UN BLOQUE DINAMICO */
+    register_block_type('lapizzeria/menu', array(
+        'editor_script' => 'lapizzeria-editor-script', //SCRIPT PRINCIPAL PARA EL EDITOR
+        'editor_style' => 'lapizzeria-editor-styles', //ESTILOS PARA EL EDITOR
+        'style' => 'lapizzeria-frontend-styles',// ESTILOS PARA EL FRONT END
+        'render_callback' => 'lapizzeria_especialidades_front_end' //QUERY A LA BBDD
+    ));
+
  }
  add_action( 'init', 'lapizzeria_registrar_bloques' );
+
+
+ /** CONSULTA A LA BBDD PARA MOSTRAR LOS RESULTADOS EN EL FRONT END*/
+ function lapizzeria_especialidades_front_end(){
+     return 'en el fornt end';
+
+ }
