@@ -314,7 +314,13 @@ __webpack_require__.r(__webpack_exports__);
 
 var registerBlockType = wp.blocks.registerBlockType;
 var withSelect = wp.data.withSelect; //withSelect es como el wp_query de guttenberg
-//Logo para el bloque
+
+var _wp$blockEditor = wp.blockEditor,
+    RichText = _wp$blockEditor.RichText,
+    InspectorControls = _wp$blockEditor.InspectorControls;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    RangeControl = _wp$components.RangeControl; //Logo para el bloque
 
 
 registerBlockType('lapizzeria/menu', {
@@ -323,18 +329,96 @@ registerBlockType('lapizzeria/menu', {
     src: _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"]
   },
   category: 'lapizzeria',
-  edit: withSelect(function (select) {
+  attributes: {
+    cantidadMostrar: {
+      type: 'number',
+      default: 4
+    }
+  },
+  edit: withSelect(function (select, props) {
+    // Extraemos los valores del props
+    var cantidadMostrar = props.attributes.cantidadMostrar,
+        setAttributes = props.setAttributes; //Pos el scope de javascript la funcion no esta definida porque solo esta definida en el edit y no en especialidades donde es llamada.
+    //Para que no de error, se lo pasamos en el return para que esté disponible con las espcialidades.
+
+    var onChangeCantidadAMostrar = function onChangeCantidadAMostrar(nuevaCantidad) {
+      console.log(nuevaCantidad);
+
+      if (cantidadMostrar.length === 0 || nuevaCantidad === 4) {
+        setAttributes({
+          cantidadMostrar: parseInt(4)
+        });
+      }
+
+      setAttributes({
+        cantidadMostrar: parseInt(nuevaCantidad)
+      });
+    };
+
     return {
       //Enviar una peticion a la API
-      especialidades: select("core").getEntityRecords('postType', 'especialidades')
+      especialidades: select("core").getEntityRecords('postType', 'especialidades', {
+        per_page: cantidadMostrar || 4
+      }),
+      onChangeCantidadAMostrar: onChangeCantidadAMostrar,
+      props: props
     };
   })(function (_ref) {
-    var especialidades = _ref.especialidades;
-    console.log(especialidades);
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", null, "Nuestras Especialidades"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("ul", {
+    var especialidades = _ref.especialidades,
+        onChangeCantidadAMostrar = _ref.onChangeCantidadAMostrar,
+        props = _ref.props;
+    console.log(especialidades); // Extraemos los valores del props
+
+    var cantidadMostrar = props.attributes.cantidadMostrar;
+    /**
+     * ACLARACIÓN AL ERROR DE .MAP:
+     * 
+     * El error de que nos falle el bloque cada vez que recargamos la página se debe a que la rest-api
+     * tarda un mas en devolver los datos que lo que tarda .map, por lo que da error.
+     * 
+     * Para solucionarlo, verificaremos las especilidades y comprobaremos si finalmento no hay nada.
+     **/
+    //VERIFICAR ESPCIALIDADES
+
+    if (!especialidades) {
+      return 'Cargando...';
+    } //SI NO HAY ESPECIALIDADES
+
+
+    if (especialidades && especialidades.length === 0) {
+      return 'No hay resultados.';
+    }
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+      title: 'Cantidad a Mostrar',
+      initialOpen: true
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      classname: "components-base-control"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "components-base-control__field"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
+      className: "components-base-control__label"
+    }, "Cantidad a Mostrar"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RangeControl, {
+      onChange: onChangeCantidadAMostrar,
+      min: 2,
+      max: 10,
+      value: cantidadMostrar || 4
+    }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h2", {
+      className: "titulo-menu"
+    }, "Nuestras Especialidades"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("ul", {
       className: "nuestro-menu"
     }, especialidades.map(function (especialidad) {
-      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, especialidad.title.raw));
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("li", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+        src: especialidad.imagen_destacada
+      }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "platillo"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "precio-titulo"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", null, especialidad.title.raw), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, "\u20AC ", especialidad.precio)), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+        className: "contenido-platillo"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+        value: especialidad.content.rendered
+      })))));
     })));
   }),
   save: function save() {

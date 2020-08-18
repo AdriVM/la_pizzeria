@@ -92,7 +92,66 @@
 
 
  /** CONSULTA A LA BBDD PARA MOSTRAR LOS RESULTADOS EN EL FRONT END*/
- function lapizzeria_especialidades_front_end(){
-     return 'en el fornt end';
+ function lapizzeria_especialidades_front_end($atts){
+
+    /*echo '<pre>';
+    var_dump($atts);
+    echo'</pre>';*/
+    //Problema con la cantidad a mostrar si es igual al default, en gutenberg funciona, peor en el front falla, asi que lo forzamos.
+    if( count($atts) == 0 ){
+        $atts['cantidadMostrar'] = 4;
+    }
+     /*echo '<pre>';
+    var_dump($atts);
+    echo'</pre>';*/
+    //Obtener los datos del query
+    $especialidades = wp_get_recent_posts(array(
+        'post_type' => 'especialidades',
+        'post_status' => 'publish',
+        'numberposts' => $atts['cantidadMostrar']
+    ));
+
+    //Revisar que haya resultados
+    if(count($especialidades) == 0){
+        return 'No hay Especialidades disponibles en este momento.';
+    }
+
+    $cuerpo = '';
+
+    $cuerpo .= '<h2 class="titulo-menu">Nuestras Especialidades</h2>';
+    $cuerpo .= '<ul class="nuestro-menu">';
+    foreach($especialidades as $esp):
+        //Obtener un objeto del post
+        $post = get_post( $esp['ID'] );
+        setup_postdata( $post ); //Nos permite acceder a los template tags del post porque a diferencia de wp_Query, wp_get_recent_posts no nos deja por si solo.
+
+        $cuerpo .= sprintf(
+            '<li>
+                %1$s
+                <div class="platillo">
+                    <div class="precio-titulo">
+                        <h3>%2$s</h3>
+                        <p>€ %3$s</p>
+                    </div>
+                    <div class="contenido-platillo">
+                        <p>
+                            %4$s
+                        </p>
+                    </div>
+                </div>
+            </li>',
+            get_the_post_thumbnail($post, 'especialidades'),
+            get_the_title($post),
+            get_field('precio', $post),
+            get_the_content($post)
+        );
+
+        //Reseteamos la query
+        wp_reset_postdata();
+
+    endforeach;
+    $cuerpo .= '</ul>';
+
+    return $cuerpo;
 
  }
