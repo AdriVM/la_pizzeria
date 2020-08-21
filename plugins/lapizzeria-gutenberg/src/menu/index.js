@@ -1,7 +1,7 @@
 const { registerBlockType } = wp.blocks;
 const { withSelect } = wp.data; //withSelect es como el wp_query de guttenberg
 const { RichText, InspectorControls } = wp.blockEditor;
-const { PanelBody, RangeControl } = wp.components;
+const { PanelBody, RangeControl, SelectControl, TextControl } = wp.components;
 
 //Logo para el bloque
 import { ReactComponent as Logo } from '../pizzeria-icon.svg';
@@ -14,34 +14,54 @@ registerBlockType('lapizzeria/menu', {
         cantidadMostrar: {
             type: 'number',
             default: 4
+        },
+        categoriaMenu: {
+            type: 'number'
+        },
+        tituloBloque: {
+            type:'string',
+            default: 'Titulo Bloque'
         }
     },
     edit: withSelect( (select, props) => {
 
         // Extraemos los valores del props
-        const { attributes: { cantidadMostrar }, setAttributes } = props;
+        const { attributes: { cantidadMostrar, categoriaMenu }, setAttributes } = props;
 
         //Pos el scope de javascript la funcion no esta definida porque solo esta definida en el edit y no en especialidades donde es llamada.
         //Para que no de error, se lo pasamos en el return para que esté disponible con las espcialidades.
         const onChangeCantidadAMostrar = nuevaCantidad => {
-            console.log(nuevaCantidad);
-            setAttributes({ cantidadMostrar : parseInt( nuevaCantidad ) })
+            setAttributes({ cantidadMostrar : parseInt( nuevaCantidad ) });
+        }
+
+        const onChangeCategoriaMenu = nuevaCategoria => {
+            setAttributes({ categoriaMenu :  nuevaCategoria });
+        }
+
+        const onChangeTituloBloque = nuevoTitulo => {
+            setAttributes({ tituloBloque : nuevoTitulo });
         }
 
         return{
+            //Lamamos a la taxonomia en la API
+            categorias: select("core").getEntityRecords('taxonomy', 'categoria-menu'),
+
             //Enviar una peticion a la API
             especialidades: select("core").getEntityRecords('postType','especialidades', {
+                'categoria-menu': categoriaMenu,
                 per_page: cantidadMostrar
             }), 
             onChangeCantidadAMostrar,
+            onChangeCategoriaMenu,
+            onChangeTituloBloque,
             props
         }
     })
-    ( ({ especialidades, onChangeCantidadAMostrar, props })  => {
-        console.log(especialidades);
+    ( ({ categorias, especialidades, onChangeCantidadAMostrar, onChangeCategoriaMenu, onChangeTituloBloque, props })  => {
+        console.log(categorias);
 
         // Extraemos los valores del props
-        const { attributes: { cantidadMostrar } } = props;
+        const { attributes: { cantidadMostrar, categoriaMenu, tituloBloque } } = props;
 
         /**
          * ACLARACIÓN AL ERROR DE .MAP:
@@ -52,15 +72,37 @@ registerBlockType('lapizzeria/menu', {
          * Para solucionarlo, verificaremos las especilidades y comprobaremos si finalmento no hay nada.
          **/
 
+//##################################################################################################################
+
         //VERIFICAR ESPCIALIDADES
         if(!especialidades){
-            return 'Cargando...';
+            return 'Cargando Especialidades...';
         }
 
         //SI NO HAY ESPECIALIDADES
         if(especialidades && especialidades.length === 0){
-            return 'No hay resultados.';
+            return 'No hay especialidades.';
         }
+
+        //VERIFICAMOS CATEGORIAS
+        if(!categorias) {
+            console.log('No hay categorias');
+            return null;
+        }
+        if(categorias && categorias.length === 0) {
+            console.log('No hay categorias');
+            return null;
+        }
+
+        // Generar label y value a categorias
+        categorias.forEach( categoria =>{
+            categoria['label'] = categoria.name;
+            categoria['value'] = categoria.id;
+        })
+
+        // Arreglo con valores por default
+        const opcionDefault = [{ value: '', label : ' -- Todos -- '}];
+        const listadoCategorias = [...opcionDefault, ...categorias ];
 
         return(
             <>
@@ -81,9 +123,38 @@ registerBlockType('lapizzeria/menu', {
                         </div>
                     </div>
                 </PanelBody>
+
+                <PanelBody title={'Categoría de Especialidad'} initialOpen={false}>
+                    <div classname="components-base-control">
+                        <div className="components-base-control__field">
+                            <label className="components-base-control__label">
+                            Categoría de Especialidad
+                            </label>
+                            <SelectControl
+                            options={ listadoCategorias }
+                            onChange={ onChangeCategoriaMenu }
+                            value={ categoriaMenu }
+                            />
+                        </div>
+                    </div>
+                </PanelBody>
+
+                <PanelBody title={'Título Bloque'} initialOpen={false}>
+                    <div classname="components-base-control">
+                        <div className="components-base-control__field">
+                            <label className="components-base-control__label">
+                                Título Bloque
+                            </label>
+                            <TextControl 
+                                    onChange={onChangeTituloBloque}
+                                    value={tituloBloque}
+                            />
+                        </div>
+                    </div>
+                </PanelBody>
             </InspectorControls>
 
-            <h2 className="titulo-menu">Nuestras Especialidades</h2>
+            <h2 className="titulo-menu">{ tituloBloque }</h2>
             <ul className="nuestro-menu">
                 {especialidades.map(especialidad => (
                     <li>

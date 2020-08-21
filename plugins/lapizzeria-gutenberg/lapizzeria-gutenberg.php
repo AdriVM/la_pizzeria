@@ -94,9 +94,9 @@
  /** CONSULTA A LA BBDD PARA MOSTRAR LOS RESULTADOS EN EL FRONT END*/
  function lapizzeria_especialidades_front_end($atts){
 
-    /*echo '<pre>';
+    /* echo '<pre>';
     var_dump($atts);
-    echo'</pre>';*/
+    echo'</pre>'; */
     //Problema con la cantidad a mostrar si es igual al default, en gutenberg funciona, peor en el front falla, asi que lo forzamos.
     if( count($atts) == 0 ){
         $atts['cantidadMostrar'] = 4;
@@ -104,11 +104,32 @@
      /*echo '<pre>';
     var_dump($atts);
     echo'</pre>';*/
+
+    // ######################### Extraer los valores y agregar los defaults ####################################
+
+    //Si existe $atts['cantidadMostrar'] le asignamos su valor, si no, le damos valor por defecto 4
+    $cantidad = $atts['cantidadMostrar'] ? $atts['cantidadMostrar'] : 4;
+
+    // SI existe $atts['tituloBloque'] le asignamos su valor, si no, le damos por defecto 'Nuestras Especialidades'
+    $titulo_bloque = $atts['tituloBloque'] ? $atts['tituloBloque'] : 'Nuestras Especialidades';
+
+
+    $tax_query = array();
+
+    if(isset($atts['categoriaMenu']) && $atts['categoriaMenu'] != ''){
+        $tax_query[] = array(
+            'taxonomy' => 'categoria-menu',
+            'terms' => $atts['categoriaMenu'],
+            'field' => 'term_id'
+        );
+    }
+
     //Obtener los datos del query
     $especialidades = wp_get_recent_posts(array(
         'post_type' => 'especialidades',
         'post_status' => 'publish',
-        'numberposts' => $atts['cantidadMostrar']
+        'numberposts' => $cantidad,
+        'tax_query'  => $tax_query
     ));
 
     //Revisar que haya resultados
@@ -118,7 +139,7 @@
 
     $cuerpo = '';
 
-    $cuerpo .= '<h2 class="titulo-menu">Nuestras Especialidades</h2>';
+    $cuerpo .= '<h2 class="titulo-menu">' . $titulo_bloque . '</h2>';
     $cuerpo .= '<ul class="nuestro-menu">';
     foreach($especialidades as $esp):
         //Obtener un objeto del post
