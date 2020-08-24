@@ -1,3 +1,18 @@
+:root {
+    --fuentePrincipal: 'Open Sans', sans-serif; 
+    --fuenteHeadings:  'Raleway', sans-serif;
+
+    /** Colores **/
+    --rojo: #a61206;
+    --naranja: #f19f30;
+    --verde: #127427;
+
+    --blanco: #FFFFFF;
+    --negro: #000000;
+    --grisClaro: #c1c1c1;
+
+    --contenedor: 1200px;
+}
 .wp-block {
     max-width: 1080px;
 }
@@ -9,4 +24,37 @@
     padding: 4rem 2rem;
 }
 
+.texto-primario{
+    color: var(--rojo)!important;
+}
 
+/** Galería **/
+.imagen{
+    position: relative;
+}
+.imagen .borrar-imagen {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    background-color: rgba(0, 0, 0, .75);
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.imagen .borrar-imagen:hover{
+    cursor: pointer;
+    background-color: var(--rojo);
+}
+.borrar-imagen .dashicons {
+    color: var(--blanco);
+}
+
+.lapizzeria-agregar-imagen {
+    margin: 0 auto!important;
+    display: flex;
+    border: 1px solid;
+    border-radius: 50%;
+}

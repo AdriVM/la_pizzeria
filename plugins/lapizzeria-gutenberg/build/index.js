@@ -396,6 +396,130 @@ registerBlockType('lapizzeria/boxes', {
 
 /***/ }),
 
+/***/ "./src/galeria/index.js":
+/*!******************************!*\
+  !*** ./src/galeria/index.js ***!
+  \******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/helpers/toConsumableArray */ "./node_modules/@babel/runtime/helpers/toConsumableArray.js");
+/* harmony import */ var _babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../pizzeria-icon.svg */ "./src/pizzeria-icon.svg");
+
+
+var registerBlockType = wp.blocks.registerBlockType;
+var MediaUpload = wp.editor.MediaUpload;
+var IconButton = wp.components.IconButton; //Logo para el bloque
+
+
+registerBlockType('lapizzeria/galeria', {
+  title: 'La Pizzería Galería',
+  icon: {
+    src: _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_2__["ReactComponent"]
+  },
+  category: 'lapizzeria',
+  attributes: {
+    imagenes: {
+      type: 'array'
+    }
+  },
+  edit: function edit(props) {
+    //Extraer los valores
+    var _props$attributes$ima = props.attributes.imagenes,
+        imagenes = _props$attributes$ima === void 0 ? [] : _props$attributes$ima,
+        setAttributes = props.setAttributes;
+    console.log(imagenes);
+
+    var borrarImagen = function borrarImagen(imagenIndex) {
+      //Guardamos todas las imagenes menos la que seleccionamos (todas las que tienen distinto indice)
+      var nuevasImagenes = imagenes.filter(function (imagen, index) {
+        return index !== imagenIndex;
+      });
+      setAttributes({
+        imagenes: nuevasImagenes
+      });
+    };
+
+    var onSeleccionarNuevaImagen = function onSeleccionarNuevaImagen(nuevaImagen) {
+      var imagen = {
+        thumb: nuevaImagen.sizes.medium.url,
+        full: nuevaImagen.sizes.full.url,
+        id: nuevaImagen.id
+      };
+      setAttributes({
+        imagenes: [].concat(_babel_runtime_helpers_toConsumableArray__WEBPACK_IMPORTED_MODULE_0___default()(imagenes), [imagen])
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: "galeria-pizzeria"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(MediaUpload, {
+      onSelect: onSeleccionarNuevaImagen,
+      type: "image",
+      render: function render(_ref) {
+        var open = _ref.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(IconButton, {
+          className: "lapizzeria-agregar-imagen",
+          onClick: open,
+          icon: "format-image",
+          showTooltip: "true",
+          label: "Cambiar Imagen"
+        });
+      }
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h2", {
+      className: "texto-primario"
+    }, "Galer\xEDa"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("ul", {
+      className: "listado-imagenes"
+    }, imagenes.map(function (imagen, index) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", {
+        className: "imagen"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+        className: "borrar-imagen",
+        onClick: function onClick() {
+          return borrarImagen(index);
+        }
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+        className: "dashicons dashicons-trash"
+      })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
+        src: imagen.thumb
+      }));
+    })));
+  },
+  save: function save(props) {
+    //Extraemos los valores de props
+    var _props$attributes$ima2 = props.attributes.imagenes,
+        imagenes = _props$attributes$ima2 === void 0 ? [] : _props$attributes$ima2;
+
+    if (imagenes.length === 0) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("p", null, " No hay imagenes en la galer\xEDa. ");
+    }
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+      className: "galeria-pizzeria"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("h2", {
+      className: "texto-primario"
+    }, "Galer\xEDa"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("ul", {
+      className: "listado-imagenes"
+    }, imagenes.map(function (imagen) {
+      return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("li", {
+        className: "imagen"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("a", {
+        href: imagen.full,
+        "data-lightbox": "galeria"
+      }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("img", {
+        src: imagen.thumb
+      })));
+    })));
+  }
+});
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -407,6 +531,8 @@ registerBlockType('lapizzeria/boxes', {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _boxes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./boxes */ "./src/boxes/index.js");
 /* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu */ "./src/menu/index.js");
+/* harmony import */ var _galeria__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./galeria */ "./src/galeria/index.js");
+
 
 
 

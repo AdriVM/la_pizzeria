@@ -114,3 +114,25 @@
     font-family: var(--fuenteHeadings);
     text-align: left;
 }
+
+
+/** GALERÍA **/
+
+.galeria-pizzeria h2 {
+    color: var(--rojo);
+    font-weight: 700;
+
+}
+
+ul.listado-imagenes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    list-style: none!important;
+    margin-top: 3rem;
+    gap: 2rem;
+}
+
+.imagen img {
+    display: block;
+    width: 100%;
+}
