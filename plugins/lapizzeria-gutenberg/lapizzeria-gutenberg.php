@@ -67,7 +67,8 @@
     //Array de Bloques
     $blocks = [
         'lapizzeria/boxes',
-        'lapizzeria/galeria'
+        'lapizzeria/galeria',
+        'lapizzeria/hero'
     ];
 
 

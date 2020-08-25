@@ -9,6 +9,9 @@ function lapizzeria_setup() {
         //Soporte a los estilos por defecto de GUTENBERG en tu tema
         add_theme_support('wp-block-styles');
 
+        //Soporte a contenido completo
+        add_theme_support('align-wide');
+
         // Paleta de Colores
         add_theme_support('editor-color-palette', array(
                 array(

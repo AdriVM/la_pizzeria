@@ -520,6 +520,210 @@ registerBlockType('lapizzeria/galeria', {
 
 /***/ }),
 
+/***/ "./src/hero/index.js":
+/*!***************************!*\
+  !*** ./src/hero/index.js ***!
+  \***************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pizzeria-icon.svg */ "./src/pizzeria-icon.svg");
+
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$editor = wp.editor,
+    MediaUpload = _wp$editor.MediaUpload,
+    RichText = _wp$editor.RichText,
+    URLInputButton = _wp$editor.URLInputButton,
+    BlockControls = _wp$editor.BlockControls,
+    AlignmentToolbar = _wp$editor.AlignmentToolbar,
+    InspectorControls = _wp$editor.InspectorControls;
+var _wp$components = wp.components,
+    IconButton = _wp$components.IconButton,
+    PanelBody = _wp$components.PanelBody,
+    TextControl = _wp$components.TextControl; //Logo para el bloque
+
+
+registerBlockType('lapizzeria/hero', {
+  title: 'La Pizzeria Hero',
+  icon: {
+    src: _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"]
+  },
+  category: 'lapizzeria',
+  attributes: {
+    imagenHero: {
+      type: 'string',
+      selector: '.hero-block'
+    },
+    tituloHero: {
+      type: 'string',
+      source: 'html',
+      selector: '.hero-block h1'
+    },
+    textoHero: {
+      type: 'string',
+      source: 'html',
+      selector: '.hero-block p'
+    },
+    urlHero: {
+      type: 'string',
+      source: 'attibute',
+      attibute: 'href'
+    },
+    alinearContenido: {
+      type: 'string',
+      default: 'center'
+    },
+    alturaHero: {
+      type: 'number'
+    }
+  },
+  supports: {
+    align: ['wide', 'full'] //El tema tiene que soportar esto, hay que poner add_theme_support('align-wide'); en el functions.php 
+
+  },
+  edit: function edit(props) {
+    //Extraemos los valores
+    var _props$attributes = props.attributes,
+        imagenHero = _props$attributes.imagenHero,
+        tituloHero = _props$attributes.tituloHero,
+        textoHero = _props$attributes.textoHero,
+        urlHero = _props$attributes.urlHero,
+        alinearContenido = _props$attributes.alinearContenido,
+        alturaHero = _props$attributes.alturaHero,
+        setAttributes = props.setAttributes;
+
+    var onSeleccionarImagen = function onSeleccionarImagen(nuevaImagen) {
+      setAttributes({
+        imagenHero: nuevaImagen.sizes.full.url
+      });
+    };
+
+    var onChangeTitulo = function onChangeTitulo(nuevoTitulo) {
+      setAttributes({
+        tituloHero: nuevoTitulo
+      });
+    };
+
+    var onChangeTexto = function onChangeTexto(nuevoTexto) {
+      setAttributes({
+        textoHero: nuevoTexto
+      });
+    };
+
+    var onChangeURL = function onChangeURL(nuevaURL) {
+      setAttributes({
+        urlHero: nuevaURL
+      });
+    };
+
+    var onChangeAliearContenido = function onChangeAliearContenido(nuevoAlineamiento) {
+      setAttributes({
+        alinearContenido: nuevoAlineamiento
+      });
+    };
+
+    var onChangeAlturaHero = function onChangeAlturaHero(nuevaAlturaHero) {
+      setAttributes({
+        alturaHero: nuevaAlturaHero
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(InspectorControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(PanelBody, {
+      title: 'Altura del Hero',
+      initialOpen: true
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      classname: "components-base-control"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "components-base-control__field"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("label", {
+      className: "components-base-control__label"
+    }, "Altura en Pixeles"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(TextControl, {
+      type: "number",
+      max: 700,
+      min: 300,
+      step: 10,
+      value: alturaHero || 500,
+      onChange: onChangeAlturaHero
+    }))))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "hero-block",
+      style: {
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(".concat(imagenHero, ")"),
+        textAlign: alinearContenido,
+        height: "".concat(alturaHero || 500, "px")
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(BlockControls, null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(AlignmentToolbar, {
+      onChange: onChangeAliearContenido,
+      value: alinearContenido
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onSeleccionarImagen,
+      type: "image",
+      render: function render(_ref) {
+        var open = _ref.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(IconButton, {
+          className: "lapizzeria-agregar-imagen",
+          onClick: open,
+          icon: "format-image",
+          showTooltip: "true",
+          label: "Cambiar Imagen"
+        });
+      }
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "contenido-hero"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", {
+      classsName: "titulo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      placeholder: 'Agregar el Título del Hero',
+      onChange: onChangeTitulo,
+      value: tituloHero
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      placeholder: 'Agregar el Texto del Hero',
+      onChange: onChangeTexto,
+      value: textoHero
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: urlHero,
+      className: "boton boton-primario"
+    }, " Leer M\xE1s ")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(URLInputButton, {
+      onChange: onChangeURL,
+      url: urlHero
+    }))));
+  },
+  save: function save(props) {
+    //Extraemos los valores
+    var _props$attributes2 = props.attributes,
+        imagenHero = _props$attributes2.imagenHero,
+        tituloHero = _props$attributes2.tituloHero,
+        textoHero = _props$attributes2.textoHero,
+        urlHero = _props$attributes2.urlHero,
+        alinearContenido = _props$attributes2.alinearContenido,
+        alturaHero = _props$attributes2.alturaHero;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "hero-block",
+      style: {
+        backgroundImage: "linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url(".concat(imagenHero, ")"),
+        textAlign: alinearContenido,
+        height: "".concat(alturaHero || 500, "px")
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "contenido-hero"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", {
+      classsName: "titulo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      value: tituloHero
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      value: textoHero
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: urlHero,
+      className: "boton boton-primario"
+    }, " Leer M\xE1s "))));
+  }
+});
+
+/***/ }),
+
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
@@ -532,6 +736,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _boxes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./boxes */ "./src/boxes/index.js");
 /* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu */ "./src/menu/index.js");
 /* harmony import */ var _galeria__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./galeria */ "./src/galeria/index.js");
+/* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hero */ "./src/hero/index.js");
+
 
 
 
