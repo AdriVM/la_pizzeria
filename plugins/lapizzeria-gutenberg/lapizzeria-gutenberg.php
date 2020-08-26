@@ -68,7 +68,9 @@
     $blocks = [
         'lapizzeria/boxes',
         'lapizzeria/galeria',
-        'lapizzeria/hero'
+        'lapizzeria/hero',
+        'lapizzeria/textoimagen'
+
     ];
 
 

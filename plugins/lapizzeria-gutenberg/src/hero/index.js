@@ -26,8 +26,8 @@ registerBlockType('lapizzeria/hero', {
         },
         urlHero: {
             type: 'string',
-            source: 'attibute',
-            attibute: 'href'
+            source: 'attribute',
+            attribute: 'href'
         },
         alinearContenido: {
             type: 'string',

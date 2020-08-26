@@ -570,8 +570,8 @@ registerBlockType('lapizzeria/hero', {
     },
     urlHero: {
       type: 'string',
-      source: 'attibute',
-      attibute: 'href'
+      source: 'attribute',
+      attribute: 'href'
     },
     alinearContenido: {
       type: 'string',
@@ -737,6 +737,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _menu__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./menu */ "./src/menu/index.js");
 /* harmony import */ var _galeria__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./galeria */ "./src/galeria/index.js");
 /* harmony import */ var _hero__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./hero */ "./src/hero/index.js");
+/* harmony import */ var _textoimagen__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./textoimagen */ "./src/textoimagen/index.js");
+
 
 
 
@@ -986,6 +988,199 @@ function SvgPizzeriaIcon(props) {
 
 /* harmony default export */ __webpack_exports__["default"] = ("data:image/svg+xml;base64,ZnVuY3Rpb24gX2V4dGVuZHMoKSB7IF9leHRlbmRzID0gT2JqZWN0LmFzc2lnbiB8fCBmdW5jdGlvbiAodGFyZ2V0KSB7IGZvciAodmFyIGkgPSAxOyBpIDwgYXJndW1lbnRzLmxlbmd0aDsgaSsrKSB7IHZhciBzb3VyY2UgPSBhcmd1bWVudHNbaV07IGZvciAodmFyIGtleSBpbiBzb3VyY2UpIHsgaWYgKE9iamVjdC5wcm90b3R5cGUuaGFzT3duUHJvcGVydHkuY2FsbChzb3VyY2UsIGtleSkpIHsgdGFyZ2V0W2tleV0gPSBzb3VyY2Vba2V5XTsgfSB9IH0gcmV0dXJuIHRhcmdldDsgfTsgcmV0dXJuIF9leHRlbmRzLmFwcGx5KHRoaXMsIGFyZ3VtZW50cyk7IH0KCmltcG9ydCAqIGFzIFJlYWN0IGZyb20gInJlYWN0IjsKCnZhciBfcmVmID0gLyojX19QVVJFX18qL1JlYWN0LmNyZWF0ZUVsZW1lbnQoInBhdGgiLCB7CiAgZmlsbDogIiMxQjY2MDYiLAogIGQ6ICJNLS40MDUtMS42MTJoMjcuMDl2MjcuMjU1SC0uNDA1eiIKfSk7Cgp2YXIgX3JlZjIgPSAvKiNfX1BVUkVfXyovUmVhY3QuY3JlYXRlRWxlbWVudCgiZyIsIHsKICBmaWxsOiAiI0ZGRiIKfSwgLyojX19QVVJFX18qL1JlYWN0LmNyZWF0ZUVsZW1lbnQoInBhdGgiLCB7CiAgZDogIk0yLjk2NSAxOC43ODRWNS4yMjhoMy4yOTN2MTAuNzAzaDUuMjQ2djIuODUzSDIuOTY1ek0yMy4zMTYgOS40MDJjMCAuNzkyLS4xNDYgMS40NTktLjQzOSAyLjAwMWEzLjYyIDMuNjIgMCAwMS0xLjE4OCAxLjMxMiA1LjI1NSA1LjI1NSAwIDAxLTEuNzIzLjcyOCA4Ljg0NCA4Ljg0NCAwIDAxLTIuMDI5LjIyOUgxNi4zMXY1LjExMmgtMy4yNzVWNS4yMjhoNC45NzljLjc0IDAgMS40MzMuMDczIDIuMDc3LjIyLjY0NS4xNDggMS4yMDYuMzgzIDEuNjg1LjcwOS40NzkuMzI1Ljg1NS43NTQgMS4xMzEgMS4yODIuMjczLjUzLjQwOSAxLjE4NS40MDkgMS45NjN6bS0zLjI3My4wMThjMC0uMzE5LS4wNjMtLjU4MS0uMTkxLS43ODVzLS4zLS4zNjItLjUxNy0uNDc4YTIuMTY1IDIuMTY1IDAgMDAtLjczNy0uMjI5IDYuMDUzIDYuMDUzIDAgMDAtLjg1Mi0uMDU4SDE2LjMxdjMuMTk3aDEuMzc3Yy4zMDcgMCAuNjAxLS4wMjUuODgyLS4wNzZhMi4zOSAyLjM5IDAgMDAuNzU2LS4yNjljLjIyNC0uMTI3LjM5OC0uMjk3LjUyNi0uNTA4LjEyOC0uMjA5LjE5Mi0uNDczLjE5Mi0uNzk0eiIKfSkpOwoKZnVuY3Rpb24gU3ZnUGl6emVyaWFJY29uKHByb3BzKSB7CiAgcmV0dXJuIC8qI19fUFVSRV9fKi9SZWFjdC5jcmVhdGVFbGVtZW50KCJzdmciLCBfZXh0ZW5kcyh7CiAgICB3aWR0aDogMjUuMTYsCiAgICBoZWlnaHQ6IDIzLjk1NAogIH0sIHByb3BzKSwgX3JlZiwgX3JlZjIpOwp9CgpleHBvcnQgZGVmYXVsdCAiZGF0YTppbWFnZS9zdmcreG1sO2Jhc2U2NCxQRDk0Yld3Z2RtVnljMmx2YmowaU1TNHdJaUJsYm1OdlpHbHVaejBpZFhSbUxUZ2lQejROQ2p3aExTMGdSMlZ1WlhKaGRHOXlPaUJCWkc5aVpTQkpiR3gxYzNSeVlYUnZjaUF4Tmk0d0xqQXNJRk5XUnlCRmVIQnZjblFnVUd4MVp5MUpiaUF1SUZOV1J5QldaWEp6YVc5dU9pQTJMakF3SUVKMWFXeGtJREFwSUNBdExUNE5DandoUkU5RFZGbFFSU0J6ZG1jZ1VGVkNURWxESUNJdEx5OVhNME12TDBSVVJDQlRWa2NnTVM0eEx5OUZUaUlnSW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTDBkeVlYQm9hV056TDFOV1J5OHhMakV2UkZSRUwzTjJaekV4TG1SMFpDSStEUW84YzNabklIWmxjbk5wYjI0OUlqRXVNU0lnYVdROUlrTmhjR0ZmTVNJZ2VHMXNibk05SW1oMGRIQTZMeTkzZDNjdWR6TXViM0puTHpJd01EQXZjM1puSWlCNGJXeHVjenA0YkdsdWF6MGlhSFIwY0RvdkwzZDNkeTUzTXk1dmNtY3ZNVGs1T1M5NGJHbHVheUlnZUQwaU1IQjRJaUI1UFNJd2NIZ2lEUW9KSUhkcFpIUm9QU0l5TlM0eE5uQjRJaUJvWldsbmFIUTlJakl6TGprMU5IQjRJaUIyYVdWM1FtOTRQU0l3SURBZ01qVXVNVFlnTWpNdU9UVTBJaUJsYm1GaWJHVXRZbUZqYTJkeWIzVnVaRDBpYm1WM0lEQWdNQ0F5TlM0eE5pQXlNeTQ1TlRRaUlIaHRiRHB6Y0dGalpUMGljSEpsYzJWeWRtVWlQZzBLUEhKbFkzUWdlRDBpTFRBdU5EQTFJaUI1UFNJdE1TNDJNVElpSUdacGJHdzlJaU14UWpZMk1EWWlJSGRwWkhSb1BTSXlOeTR3T1NJZ2FHVnBaMmgwUFNJeU55NHlOVFVpTHo0TkNqeG5QZzBLQ1R4d1lYUm9JR1pwYkd3OUlpTkdSa1pHUmtZaUlHUTlJazB5TGprMk5Td3hPQzQzT0RSV05TNHlNamhvTXk0eU9UTjJNVEF1TnpBemFEVXVNalEyZGpJdU9EVXpTREl1T1RZMWVpSXZQZzBLQ1R4d1lYUm9JR1pwYkd3OUlpTkdSa1pHUmtZaUlHUTlJazB5TXk0ek1UWXNPUzQwTURKak1Dd3dMamM1TWkwd0xqRTBOaXd4TGpRMU9TMHdMalF6T1N3eUxqQXdNV010TUM0eU9UUXNNQzQxTkRJdE1DNDJPRGtzTUM0NU9DMHhMakU0T0N3eExqTXhNZzBLQ1FsakxUQXVORGs0TERBdU16TXlMVEV1TURjeUxEQXVOVGMwTFRFdU56SXpMREF1TnpJNFl5MHdMalkxTVN3d0xqRTFNeTB4TGpNeU9Dd3dMakl5T1MweUxqQXlPU3d3TGpJeU9XZ3RNUzQyTWpkMk5TNHhNVEpvTFRNdU1qYzFWalV1TWpJNGFEUXVPVGM1RFFvSkNXTXdMamMwTERBc01TNDBNek1zTUM0d056TXNNaTR3Tnpjc01DNHlNbU13TGpZME5Td3dMakUwT0N3eExqSXdOaXd3TGpNNE15d3hMalk0TlN3d0xqY3dPV013TGpRM09Td3dMak15TlN3d0xqZzFOU3d3TGpjMU5Dd3hMakV6TVN3eExqSTRNZzBLQ1FsRE1qTXVNVGdzTnk0NU5qa3NNak11TXpFMkxEZ3VOakkwTERJekxqTXhOaXc1TGpRd01ub2dUVEl3TGpBME15dzVMalF5WXpBdE1DNHpNVGt0TUM0d05qTXRNQzQxT0RFdE1DNHhPVEV0TUM0M09EVnpMVEF1TXkwd0xqTTJNaTB3TGpVeE55MHdMalEzT0EwS0NRbGpMVEF1TWpFNExUQXVNVEUyTFRBdU5EWXlMVEF1TVRreUxUQXVOek0zTFRBdU1qSTVZeTB3TGpJM05DMHdMakF6T1Mwd0xqVTFPUzB3TGpBMU9DMHdMamcxTWkwd0xqQTFPR2d0TVM0ME16WjJNeTR4T1Rkb01TNHpOemRqTUM0ek1EY3NNQ3d3TGpZd01TMHdMakF5TlN3d0xqZzRNaTB3TGpBM05nMEtDUWxqTUM0eU9DMHdMakExTWl3d0xqVXpNaTB3TGpFME1Td3dMamMxTmkwd0xqSTJPV013TGpJeU5DMHdMakV5Tnl3d0xqTTVPQzB3TGpJNU55d3dMalV5Tmkwd0xqVXdPRU14T1M0NU56a3NNVEF1TURBMUxESXdMakEwTXl3NUxqYzBNU3d5TUM0d05ETXNPUzQwTW5vaUx6NE5Dand2Wno0TkNqd3ZjM1puUGcwSyI7CmV4cG9ydCB7IFN2Z1BpenplcmlhSWNvbiBhcyBSZWFjdENvbXBvbmVudCB9Ow==");
 
+
+/***/ }),
+
+/***/ "./src/textoimagen/index.js":
+/*!**********************************!*\
+  !*** ./src/textoimagen/index.js ***!
+  \**********************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../pizzeria-icon.svg */ "./src/pizzeria-icon.svg");
+
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$editor = wp.editor,
+    MediaUpload = _wp$editor.MediaUpload,
+    RichText = _wp$editor.RichText,
+    URLInputButton = _wp$editor.URLInputButton,
+    BlockControls = _wp$editor.BlockControls,
+    AlignmentToolbar = _wp$editor.AlignmentToolbar;
+var IconButton = wp.components.IconButton; //Logo para el bloque
+
+
+registerBlockType('lapizzeria/textoimagen', {
+  title: 'Pizzeria Texto e Imagen',
+  icon: {
+    src: _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"]
+  },
+  category: 'lapizzeria',
+  attributes: {
+    imagenFondo: {
+      type: 'string',
+      selector: '.ingredientes-bloque'
+    },
+    tituloBloque: {
+      type: 'string',
+      source: 'html',
+      selector: '.texto-ingredientes h1'
+    },
+    textoBloque: {
+      type: 'string',
+      source: 'html',
+      selector: '.texto-ingredientes p'
+    },
+    enlaceBloque: {
+      type: 'string',
+      source: 'attribute',
+      attribute: 'href'
+    },
+    imagenBloque: {
+      type: 'string',
+      source: 'attribute',
+      selector: '.imagen-ingredientes img',
+      attribute: 'src',
+      default: _pizzeria_icon_svg__WEBPACK_IMPORTED_MODULE_1__["ReactComponent"]
+    }
+  },
+  supports: {
+    align: ['wide', 'full']
+  },
+  edit: function edit(props) {
+    // extraer de props
+    var _props$attributes = props.attributes,
+        imagenFondo = _props$attributes.imagenFondo,
+        tituloBloque = _props$attributes.tituloBloque,
+        textoBloque = _props$attributes.textoBloque,
+        enlaceBloque = _props$attributes.enlaceBloque,
+        imagenBloque = _props$attributes.imagenBloque,
+        setAttributes = props.setAttributes;
+
+    var onSeleccionarImagen = function onSeleccionarImagen(nuevaImagen) {
+      setAttributes({
+        imagenFondo: nuevaImagen.sizes.full.url
+      });
+    };
+
+    var onChangeTitulo = function onChangeTitulo(nuevoTitulo) {
+      setAttributes({
+        tituloBloque: nuevoTitulo
+      });
+    };
+
+    var onChangeTexto = function onChangeTexto(nuevoTexto) {
+      setAttributes({
+        textoBloque: nuevoTexto
+      });
+    };
+
+    var onChangeURL = function onChangeURL(nuevaUrl) {
+      setAttributes({
+        enlaceBloque: nuevaUrl
+      });
+    };
+
+    var onSeleccionarImagenIngredientes = function onSeleccionarImagenIngredientes(nuevaImagen) {
+      setAttributes({
+        imagenBloque: nuevaImagen.sizes.full.url
+      });
+    };
+
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "ingredientes-bloque",
+      style: {
+        backgroundImage: "url(".concat(imagenFondo, ")")
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onSeleccionarImagen,
+      type: "image",
+      render: function render(_ref) {
+        var open = _ref.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(IconButton, {
+          className: "lapizzeria-agregar-imagen",
+          onClick: open,
+          icon: "format-image",
+          showTooltip: "true",
+          label: "Cambiar Imagen"
+        });
+      }
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "contenido-ingredientes"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "texto-ingredientes"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", {
+      className: "titulo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      placeholder: 'Agrega el Titulo del Hero',
+      onChange: onChangeTitulo,
+      value: tituloBloque
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText, {
+      placeholder: 'Agrega el Titulo del Hero',
+      onChange: onChangeTexto,
+      value: textoBloque
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: enlaceBloque,
+      className: "boton boton-secundario"
+    }, "Leer M\xE1s")), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(URLInputButton, {
+      onChange: onChangeURL,
+      url: enlaceBloque
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "imagen-ingredientes"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: imagenBloque
+    }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(MediaUpload, {
+      onSelect: onSeleccionarImagenIngredientes,
+      type: "image",
+      render: function render(_ref2) {
+        var open = _ref2.open;
+        return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(IconButton, {
+          className: "lapizzeria-agregar-imagen",
+          onClick: open,
+          icon: "format-image",
+          showTooltip: "true",
+          label: "Cambiar Imagen"
+        });
+      }
+    }))));
+  },
+  save: function save(props) {
+    // extraer de props
+    var _props$attributes2 = props.attributes,
+        imagenFondo = _props$attributes2.imagenFondo,
+        tituloBloque = _props$attributes2.tituloBloque,
+        textoBloque = _props$attributes2.textoBloque,
+        enlaceBloque = _props$attributes2.enlaceBloque,
+        imagenBloque = _props$attributes2.imagenBloque;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "ingredientes-bloque",
+      style: {
+        backgroundImage: "url(".concat(imagenFondo, ")")
+      }
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "contenido-ingredientes"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "texto-ingredientes"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h1", {
+      className: "titulo"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      value: tituloBloque
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("p", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(RichText.Content, {
+      value: textoBloque
+    })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("a", {
+      href: enlaceBloque,
+      className: "boton boton-secundario"
+    }, "Leer M\xE1s"))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+      className: "imagen-ingredientes"
+    }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", {
+      src: imagenBloque
+    }))));
+  }
+});
 
 /***/ }),
 

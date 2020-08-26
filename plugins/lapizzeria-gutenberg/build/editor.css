@@ -105,3 +105,17 @@
 .hero-block .components-button.has-icon {
     color: var(--blanco)!important;
 }
+
+.hero-block .block-editor-url-input__button-modal-line button.components-button.has-icon {
+    color: var(--negro)!important;
+}
+
+.ingredientes-bloque .components-button.has-icon .dashicon,
+.ingredientes-bloque .lapizzeria-agregar-imagen,
+.ingredientes-bloque .components-button.has-icon {
+    color: var(--blanco)!important;
+}
+
+.ingredientes-bloque .block-editor-url-input__button-modal-line button.components-button.has-icon{
+    color: var(--negro)!important;
+}
