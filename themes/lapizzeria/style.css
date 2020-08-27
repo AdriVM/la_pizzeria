@@ -109,6 +109,10 @@ img {
     color: var(--rojo);
 }
 
+.alinear-centro {
+    text-align: center;
+    margin: 0 auto;
+}
 .seccion {
     padding: 1rem;
 }
@@ -395,6 +399,7 @@ img {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center center;
+    background-attachment: fixed;
     height: 45rem;
     margin: 0 auto;
     position: relative;

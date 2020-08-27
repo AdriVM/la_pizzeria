@@ -4,6 +4,12 @@
 function lapizzeria_setup() {
 
 //########################################################################################################################
+
+        /** Títulos para SEO */
+
+        add_theme_support('title-tag');
+
+
         /** GUTENBERG */
 
         //Soporte a los estilos por defecto de GUTENBERG en tu tema

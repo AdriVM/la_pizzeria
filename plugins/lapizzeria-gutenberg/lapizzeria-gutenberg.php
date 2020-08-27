@@ -69,8 +69,8 @@
         'lapizzeria/boxes',
         'lapizzeria/galeria',
         'lapizzeria/hero',
-        'lapizzeria/textoimagen'
-
+        'lapizzeria/textoimagen',
+        'lapizzeria/contenedor'
     ];
 
 

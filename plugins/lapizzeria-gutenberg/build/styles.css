@@ -187,3 +187,52 @@ ul.listado-imagenes {
     }
     
 }
+
+/*** Bloque contenedor ***/
+
+.bloque-contenedor {
+    min-height: 100rem;
+    background-repeat: no-repeat;
+    background-position: top left;
+}
+
+.contenido-bloque {
+    padding: 5rem 0;
+}
+
+@media (min-width: 768px){
+    .contenido-bloque {
+        min-height: 90rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
+
+}
+
+.bloques-internos {
+    padding: 3rem;
+    margin: 2rem;
+    background-color: rgba(255, 255, 255, .8);
+}
+
+@media (min-width: 768px){
+    .bloques-internos {
+        grid-column: 2 / 3;
+    }
+}
+
+.wpcf7 p label {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.wpcf7 input.wpcf7-form-control, textarea.wpcf7-form-control {
+    padding: 2rem;
+    border: 1px solid var(--grisClaro);
+    width: 100%;
+}
+
+.wpcf7 .wpcf7-form-control span.wpcf7-acceptance {
+    border: none!important;
+}
